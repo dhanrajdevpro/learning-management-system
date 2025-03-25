@@ -22,6 +22,8 @@ function AuthPage() {
     setSignUpFormData,
     handleRegisterUser,
     handleLoginUser,
+    setUserType,
+    userType
   } = useContext(AuthContext);
 
   function handleTabChange(value) {
@@ -83,6 +85,14 @@ function AuthPage() {
                   isButtonDisabled={!checkIfSignInFormIsValid()}
                   handleSubmit={handleLoginUser}
                 />
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="signin-user-type"
+                    onChange={(e) => setUserType(e.target.checked ? "admin" : "user")}
+                  />
+                  <label htmlFor="signin-user-type">Sign in as Admin</label>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>
@@ -98,11 +108,19 @@ function AuthPage() {
                 <CommonForm
                   formControls={signUpFormControls}
                   buttonText={"Sign Up"}
-                  formData={signUpFormData}
+                  formData={{ ...signUpFormData }}
                   setFormData={setSignUpFormData}
                   isButtonDisabled={!checkIfSignUpFormIsValid()}
                   handleSubmit={handleRegisterUser}
                 />
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="signup-user-type"
+                    onChange={(e) => setUserType(e.target.checked ? "instructor" : "user")}
+                  />
+                  <label htmlFor="signup-user-type">Sign up as Instructor</label>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>

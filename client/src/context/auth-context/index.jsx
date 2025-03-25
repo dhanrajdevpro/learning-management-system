@@ -8,6 +8,7 @@ export const AuthContext = createContext(null);
 export default function AuthProvider({ children }) {
   const [signInFormData, setSignInFormData] = useState(initialSignInFormData);
   const [signUpFormData, setSignUpFormData] = useState(initialSignUpFormData);
+  const [userType,setUserType] = useState('user')
   const [auth, setAuth] = useState({
     authenticate: false,
     user: null,
@@ -16,13 +17,12 @@ export default function AuthProvider({ children }) {
 
   async function handleRegisterUser(event) {
     event.preventDefault();
-    const data = await registerService(signUpFormData);
+    const data = await registerService(signUpFormDat,userType);
   }
 
   async function handleLoginUser(event) {
     event.preventDefault();
     const data = await loginService(signInFormData);
-    console.log(data, "datadatadatadatadata");
 
     if (data.success) {
       sessionStorage.setItem(
@@ -95,6 +95,8 @@ export default function AuthProvider({ children }) {
         handleLoginUser,
         auth,
         resetCredentials,
+        setUserType,
+        userType
       }}
     >
       {loading ? <Skeleton /> : children}

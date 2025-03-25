@@ -12,10 +12,9 @@ const studentCourseProgressRoutes = require("./routes/student-routes/course-prog
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const MONGO_URI =
-  "mongodb+srv://kavi:1234@cluster0.0hbjy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = process.env.MONGO_URI;
 
-const allowedOrigins = ["http://localhost:5173"];
+const allowedOrigins = [process.env.CLIENT_URL];
 app.use(
   cors({
     origin: (origin, callback) => {
