@@ -8,7 +8,7 @@ export const AuthContext = createContext(null);
 export default function AuthProvider({ children }) {
   const [signInFormData, setSignInFormData] = useState(initialSignInFormData);
   const [signUpFormData, setSignUpFormData] = useState(initialSignUpFormData);
-  const [userType,setUserType] = useState('user')
+  const [userType, setUserType] = useState('user')
   const [auth, setAuth] = useState({
     authenticate: false,
     user: null,
@@ -17,7 +17,9 @@ export default function AuthProvider({ children }) {
 
   async function handleRegisterUser(event) {
     event.preventDefault();
-    const data = await registerService(signUpFormDat,userType);
+    const data = await registerService(signUpFormData, userType, setUserType);
+
+    return data
   }
 
   async function handleLoginUser(event) {

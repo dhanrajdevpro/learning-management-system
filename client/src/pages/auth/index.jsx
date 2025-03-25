@@ -22,8 +22,7 @@ function AuthPage() {
     setSignUpFormData,
     handleRegisterUser,
     handleLoginUser,
-    setUserType,
-    userType
+    setUserType
   } = useContext(AuthContext);
 
   function handleTabChange(value) {
@@ -48,6 +47,8 @@ function AuthPage() {
   }
 
   console.log(signInFormData);
+  console.log(activeTab, "activeTab");
+
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -85,14 +86,6 @@ function AuthPage() {
                   isButtonDisabled={!checkIfSignInFormIsValid()}
                   handleSubmit={handleLoginUser}
                 />
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="signin-user-type"
-                    onChange={(e) => setUserType(e.target.checked ? "admin" : "user")}
-                  />
-                  <label htmlFor="signin-user-type">Sign in as Admin</label>
-                </div>
               </CardContent>
             </Card>
           </TabsContent>
